@@ -1,9 +1,32 @@
-function createStore(initialState, reducer) {
+function createStore(initialState, reducers) {
+    if (!initialState) {
+        throw new Error("You need to pass initial state");
+    }
+
     let state = initialState;
     let listeners = new Set();
 
     function dispatch(action) {
-        state = reducer(state, action);
+        if (!reducers) {
+            throw new Error("You have no reducers");
+        }
+
+        if (typeof reducers === "function") {
+            state = reducers(state, action);
+        } else {
+            if (!reducers.length || reducers.length === 0) {
+                throw new Error("You have no reducers");
+            }
+
+            if (reducers.length < 2) {
+                console.warn("No need to combine 1 reducer");
+            }
+
+            reducers.forEach(reducer => {
+                state = reducer(state, action);
+            });
+        }
+        
         inform(state);
     }
 
