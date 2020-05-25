@@ -4,6 +4,7 @@ function createStore(initialState, reducer) {
 
     function dispatch(action) {
         state = reducer(state, action);
+        inform(state);
     }
 
     function inform(data) {
