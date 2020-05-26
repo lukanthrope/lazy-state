@@ -35,7 +35,7 @@ function Buttons() {
   const [state, setState] = useState(store.getState());
   
   useEffect(() => {
-    store.subscribe(setState, 'count'); // since 'state' is immutable we pass 'setState' to 'store.subscribe()'
+    store.subscribe(setState); // since 'state' is immutable we pass 'setState' to 'store.subscribe()'
     return () => {
       store.unsubscribe(setState); // unsubscribe when component unmounts
     }
@@ -82,7 +82,7 @@ function ButtonsWithReduce() {
   const [state, setState] = useState(store.getState());
   
   useEffect(() => {
-    store.subscribe(setState, 'count');
+    store.subscribe(setState);
     return () => {
       store.unsubscribe(setState);
     }

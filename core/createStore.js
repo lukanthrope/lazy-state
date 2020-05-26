@@ -58,7 +58,7 @@ function createStore(initialState, reducers) {
         getState,
         subscribe,
         dispatch,
-        unsubscribe,
+        unsubscribe
     };
 }
 
