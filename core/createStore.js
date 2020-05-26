@@ -1,4 +1,4 @@
-function createStore(initialState, reducers) {
+function createStore(reducers, initialState) {
     if (!initialState) {
         throw new Error("You need to pass initial state");
     }
