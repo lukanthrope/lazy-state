@@ -49,11 +49,16 @@ function createStore(initialState, reducers) {
         listeners.add(s);
     }
 
+    function unsubscribe(s) {
+        listeners.delete(s);
+    }
+
     return {
         setState,
         getState,
         subscribe,
         dispatch,
+        unsubscribe,
     };
 }
 

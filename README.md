@@ -28,13 +28,18 @@ export default store;
 ### Store usage
 
 ```javascript
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import store from '../store/store';
 
 function Buttons() {
   const [state, setState] = useState(store.getState());
-  store.subscribe(setState);
-  // since 'state' is immutable we pass 'setState' to 'store.subscribe()'
+  
+  useEffect(() => {
+    store.subscribe(setState, 'count'); // since 'state' is immutable we pass 'setState' to 'store.subscribe()'
+    return () => {
+      store.unsubscribe(setState); // unsubscribe when component unmounts
+    }
+  }, []);
 
   return (
     <>
@@ -70,12 +75,18 @@ export default store;
 
 // SomeComponent.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import store from './store';
 
 function ButtonsWithReduce() {
   const [state, setState] = useState(store.getState());
-  store.subscribe(setState);
+  
+  useEffect(() => {
+    store.subscribe(setState, 'count');
+    return () => {
+      store.unsubscribe(setState);
+    }
+  }, []);
 
   return (
     <>
