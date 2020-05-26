@@ -1,6 +1,6 @@
 # lazy-state
 
-Lazy-state is a simple lightweight state-management library for React made for training purposes. It uses Observable pattern and can be used in small projects. Inspired by Redux.
+Lazy-state is a simple lightweight state-management library for React made for training purposes. It implements Observable pattern and can be used in small projects. Inspired by Redux.
 
 ## Getting started 
 
